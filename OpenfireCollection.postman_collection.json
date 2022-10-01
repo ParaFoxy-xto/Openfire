@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "ede28b25-270f-48b2-afc8-2052d33f7bf9",
+		"name": "OpenfireCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23531283"
+	},
+	"item": [
+		{
+			"name": "createUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"test1\",\n    \"password\": \"test1\"\n}"
+				},
+				"url": {
+					"raw": "http://172.17.0.2:9090/plugins/restapi/v1/users",
+					"protocol": "http",
+					"host": [
+						"172",
+						"17",
+						"0",
+						"2"
+					],
+					"port": "9090",
+					"path": [
+						"plugins",
+						"restapi",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createGroup",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<group>\n\t<name>UserGroup1</name>\n\t<description>My group of users</description>\n\t<shared>false</shared>\n\t<admins>\n\t\t<admin>jane.smith</admin>\n\t</admins>\n\t<members>\n\t\t<member>test1</member>\n\t</members>\n</group>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.17.0.2:9090/plugins/restapi/v1/groups",
+					"protocol": "http",
+					"host": [
+						"172",
+						"17",
+						"0",
+						"2"
+					],
+					"port": "9090",
+					"path": [
+						"plugins",
+						"restapi",
+						"v1",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createRoom",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"roomName\": \"global\",\n\t\"naturalName\": \"global-1\",\n\t\"description\": \"Global chat room\"\n}"
+				},
+				"url": {
+					"raw": "http://172.17.0.2:9090/plugins/restapi/v1/chatrooms",
+					"protocol": "http",
+					"host": [
+						"172",
+						"17",
+						"0",
+						"2"
+					],
+					"port": "9090",
+					"path": [
+						"plugins",
+						"restapi",
+						"v1",
+						"chatrooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addUserToGroup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://172.17.0.2:9090/plugins/restapi/v1/users/admin/groups/UserGroup1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"17",
+						"0",
+						"2"
+					],
+					"port": "9090",
+					"path": [
+						"plugins",
+						"restapi",
+						"v1",
+						"users",
+						"admin",
+						"groups",
+						"UserGroup1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addUserToRoom",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://172.17.0.2:9090/plugins/restapi/v1/chatrooms/global/members/test1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"17",
+						"0",
+						"2"
+					],
+					"port": "9090",
+					"path": [
+						"plugins",
+						"restapi",
+						"v1",
+						"chatrooms",
+						"global",
+						"members",
+						"test1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRooms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "172.17.0.2:9090/plugins/restapi/v1/chatrooms?type=all",
+					"host": [
+						"172",
+						"17",
+						"0",
+						"2"
+					],
+					"port": "9090",
+					"path": [
+						"plugins",
+						"restapi",
+						"v1",
+						"chatrooms"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.17.0.2:9090/plugins/restapi/v1/users",
+					"protocol": "http",
+					"host": [
+						"172",
+						"17",
+						"0",
+						"2"
+					],
+					"port": "9090",
+					"path": [
+						"plugins",
+						"restapi",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserByRoom",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.17.0.2:9090/plugins/restapi/v1/chatrooms/global/participants",
+					"protocol": "http",
+					"host": [
+						"172",
+						"17",
+						"0",
+						"2"
+					],
+					"port": "9090",
+					"path": [
+						"plugins",
+						"restapi",
+						"v1",
+						"chatrooms",
+						"global",
+						"participants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sendMessage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<message>\n\t<body>MENSAGEM ENVIADA PARA TODOS</body>\n</message>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.17.0.2:9090/plugins/restapi/v1/messages/users",
+					"protocol": "http",
+					"host": [
+						"172",
+						"17",
+						"0",
+						"2"
+					],
+					"port": "9090",
+					"path": [
+						"plugins",
+						"restapi",
+						"v1",
+						"messages",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "12345",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
